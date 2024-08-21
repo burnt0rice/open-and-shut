@@ -9,7 +9,7 @@ import {
 const dataDir = "data";
 const mainFile = "main.json";
 const mainFileTemplate = {
-  data: [],
+  sessions: [],
 };
 
 const initFile = async () => {
@@ -31,7 +31,7 @@ const initFile = async () => {
   });
 
   if (!mainExists) {
-    await writeTextFile(`${dataDir}/${mainFile}`, JSON.stringify({}), {
+    await writeTextFile(`${dataDir}/${mainFile}`, JSON.stringify(mainFileTemplate), {
       dir: BaseDirectory.AppData,
     });
   }
@@ -60,6 +60,13 @@ const saveFile = async (data) => {
   });
 };
 
+const saveSessions = async (sessions) => {
+  const mainData = await loadFile();
+  mainData.sessions = sessions;
+
+  await saveFile(mainData);
+};
+
 const resetFile = async () => {
   //Reset main.json file with template
   await writeTextFile(`${dataDir}/${mainFile}`, JSON.stringify(mainFileTemplate), {
@@ -67,4 +74,4 @@ const resetFile = async () => {
   });
 };
 
-export { initFile, loadFile, saveFile, resetFile };
+export { initFile, loadFile, saveFile, saveSessions, resetFile };

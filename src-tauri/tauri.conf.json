@@ -27,9 +27,13 @@
     },
     "windows": [
       {
-        "title": "Open and Shut",
-        "width": 800,
-        "height": 600
+        "title": "open-and-shut",
+        "fullscreen": false,
+        "resizable": true,
+        "width": 400,
+        "height": 600,
+        "minWidth": 300,
+        "minHeight": 600
       }
     ],
     "security": {
