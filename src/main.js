@@ -5,7 +5,7 @@ import "./main.css";
 
 import { initFile } from "./utils/file";
 
-await initFile();
+initFile();
 
 const pinia = createPinia();
 const app = createApp(App);
