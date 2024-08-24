@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/vue": "^2.1.5",
     "@tauri-apps/api": "^1",
+    "@vuepic/vue-datepicker": "^9.0.2",
     "luxon": "^3.5.0",
     "pinia": "^2.2.2",
     "vue": "^3.3.4"

@@ -60,6 +60,22 @@ export const useMainStore = defineStore('mainStore', {
 
       await saveSessions(this.sessions);
     },
+    async updateSession(session) {
+      if (!session.id) {
+        return;
+      }
+
+      const index = this.sessions.findIndex((s) => s.id === session.id);
+      this.sessions[index] = session;
+
+      await saveSessions(this.sessions);
+    },
+    async deleteSession(sessionId) {
+      const index = this.sessions.findIndex((s) => s.id === sessionId);
+      this.sessions.splice(index, 1);
+
+      await saveSessions(this.sessions);
+    },
     async setTheme(theme) {
       console.log('changeTheme', theme);
       localStorage.setItem('theme', theme);

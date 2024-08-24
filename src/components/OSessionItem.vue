@@ -1,5 +1,5 @@
 <template>
-  <div class="px-2 py-3">
+  <div class="group px-2 py-3">
     <div class="flex items-center gap-3 mb-2">
       <div v-if="sessionDuration" class="text-xl">{{ sessionDuration }}</div>
       <input
@@ -9,10 +9,17 @@
         class="input input-bordered input-sm bg-base-300 w-full flex-1 rounded-lg"
       />
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex justify-between items-center gap-2">
       <div class="text-sm flex items-center gap-1 opacity-50">
-        <clock-icon class="w-4 h-4"></clock-icon>
         {{ sessionFromTo }}
+      </div>
+      <div class="flex items-center opacity-0 group-hover:opacity-100">
+        <button class="btn btn-xs btn-ghost" @click="editSession">
+          <pencil-square-icon class="w-4 h-4"></pencil-square-icon>
+        </button>
+        <button class="btn btn-xs btn-ghost" @click="deleteSession">
+          <trash-icon class="w-4 h-4 text-red-400"></trash-icon>
+        </button>
       </div>
     </div>
   </div>
@@ -21,11 +28,12 @@
 <script setup>
 import { computed, defineProps } from "vue";
 import { useMainStore } from "../store";
-import { ClockIcon } from "@heroicons/vue/24/solid";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import { DateTime } from "luxon";
 
 const mainStore = useMainStore();
 
+const emit = defineEmits(["edit", "delete"]);
 const props = defineProps({
   session: {
     type: Object,
@@ -64,4 +72,12 @@ const sessionFromTo = computed(() => {
 
   return `${start.toFormat("yyyy-MM-dd HH:mm")} – ${end.toFormat("yyyy-MM-dd HH:mm")}`;
 });
+
+const editSession = () => {
+  emit("edit", props.session.id);
+};
+
+const deleteSession = () => {
+  emit("delete", props.session.id);
+};
 </script>

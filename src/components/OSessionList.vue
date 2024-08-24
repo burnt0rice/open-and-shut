@@ -12,9 +12,16 @@
         />
       </div>
     </div>
-    <div v-if="sessions.length > 0" class="bg-base-300 text-base-content rounded-lg flex-1 max-h-full overflow-scroll">
+    <div
+      v-if="sessions.length > 0"
+      class="bg-base-300 text-base-content rounded-lg flex-1 max-h-full overflow-scroll"
+    >
       <div v-for="(session, index) in sessions" :key="session.id">
-        <OSessionItem :session="session" />
+        <OSessionItem
+          :session="session"
+          @edit="editHandler"
+          @delete="deleteHandler"
+        />
         <div class="px-2">
           <hr v-if="index < sessions.length - 1" class="border-base-100" />
         </div>
@@ -26,19 +33,35 @@
         No sessions
       </div>
     </div>
+    <dialog ref="editorModal" class="modal h-screen flex justify-center items-center">
+      <div class="modal-box py-2 px-3 h-screen max-h-[600px] rounded-lg">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1"
+          >
+            <x-mark-icon class="w-4 h-4" />
+          </button>
+        </form>
+        <o-session-editor v-model="sessionForEdit" @update="mainStore.updateSession(sessionForEdit)"/>
+      </div>
+    </dialog>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
+import { ask } from "@tauri-apps/api/dialog";
 import { useMainStore } from "../store";
 import { DateTime } from "luxon";
 import OSessionItem from "./OSessionItem.vue";
-import { FaceFrownIcon } from "@heroicons/vue/24/solid";
+import OSessionEditor from "./OSessionEditor.vue";
+import { FaceFrownIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 
 const mainStore = useMainStore();
 
 const onlyToday = ref(null);
+const editorModal = ref(null);
+const sessionForEdit = ref(null);
 
 const sessions = computed(() => {
   if (onlyToday.value === true) {
@@ -59,6 +82,20 @@ const sessions = computed(() => {
 const changeOnlyToday = (e) => {
   onlyToday.value = e.target.checked;
   localStorage.setItem("onlyToday", e.target.checked);
+};
+
+const editHandler = (sessionId) => {
+  sessionForEdit.value = mainStore.sessions.find((session) => session.id === sessionId);
+  editorModal.value.showModal();
+};
+
+const deleteHandler = async (sessionId) => {
+  const deleteYes = await confirm("Are you sure you want to delete this session?");
+
+console.log(deleteYes);
+  if (deleteYes) {
+    mainStore.deleteSession(sessionId);
+  }
 };
 
 onMounted(() => {

@@ -23,6 +23,10 @@
         "createDir": true,
         "exists": true,
         "scope": ["$APPDATA/*", "$APPDATA/data/*"]
+      },
+      "dialog": {
+        "ask": true,
+        "confirm": true
       }
     },
     "windows": [
