@@ -10,7 +10,10 @@
       />
     </div>
     <div class="flex items-center gap-2">
-      <div class="text-sm text-neutral">{{ sessionFromTo }}</div>
+      <div class="text-sm flex items-center gap-1 opacity-50">
+        <clock-icon class="w-4 h-4"></clock-icon>
+        {{ sessionFromTo }}
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +21,7 @@
 <script setup>
 import { computed, defineProps } from "vue";
 import { useMainStore } from "../store";
+import { ClockIcon } from "@heroicons/vue/24/solid";
 import { DateTime } from "luxon";
 
 const mainStore = useMainStore();
@@ -58,6 +62,6 @@ const sessionFromTo = computed(() => {
   const start = DateTime.fromISO(props.session.start);
   const end = DateTime.fromISO(props.session.end);
 
-  return `${start.toFormat("yyyy-MM-dd HH:mm")} - ${end.toFormat("yyyy-MM-dd HH:mm")}`;
+  return `${start.toFormat("yyyy-MM-dd HH:mm")} – ${end.toFormat("yyyy-MM-dd HH:mm")}`;
 });
 </script>

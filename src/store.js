@@ -5,6 +5,7 @@ export const useMainStore = defineStore('mainStore', {
   state: () => ({
     sessions: [],
     currentSession: {},
+    theme: 'forest', //Default theme
   }),
   getters: {},
   actions: {
@@ -17,6 +18,12 @@ export const useMainStore = defineStore('mainStore', {
       const lastSession = data.sessions[data.sessions.length - 1];
       if (lastSession && !lastSession.end) {
         this.currentSession = lastSession;
+      }
+
+      //Load theme
+      const theme = localStorage.getItem('theme');
+      if (theme) {
+        this.theme = theme;
       }
     },
     async createAndStartSession(session) {
@@ -52,6 +59,11 @@ export const useMainStore = defineStore('mainStore', {
       this.sessions[index].comment = comment;
 
       await saveSessions(this.sessions);
-    }
+    },
+    async setTheme(theme) {
+      console.log('changeTheme', theme);
+      localStorage.setItem('theme', theme);
+      this.theme = theme;
+    },
   },
 });
