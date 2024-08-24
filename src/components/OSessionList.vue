@@ -33,8 +33,8 @@
         No sessions
       </div>
     </div>
-    <dialog ref="editorModal" class="modal h-screen flex justify-center items-center">
-      <div class="modal-box py-2 px-3 h-screen max-h-[600px] rounded-lg">
+    <dialog ref="editorModal" class="modal h-screen py-4 flex justify-center items-center">
+      <div class="modal-box py-4 px-4 h-full max-h-[600px] rounded-lg">
         <form method="dialog">
           <button
             class="btn btn-sm btn-circle btn-ghost absolute right-1 top-1"

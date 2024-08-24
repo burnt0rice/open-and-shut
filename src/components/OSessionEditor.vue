@@ -1,44 +1,46 @@
 <template>
   <div v-if="session">
     <div class="text-lg font-bold mb-5">Edit session</div>
-    <div class="flex gap-3 justify-between items-center mb-3">
-      <label for="start" class="min-w-20">Start</label>
-      <VueDatePicker
-        id="start"
-        v-model="start"
-        enable-seconds
-        :clearable="false"
-        :dark="calendarTheme"
-        :ui="{
-          input: 'bg-base-100 text-base-content border-none',
-          calendar: 'bg-base-300 text-base-content',
-          menu: 'bg-base-300 text-base-content',
-        }"
-      />
-    </div>
-    <div class="flex gap-3 justify-between items-center mb-3">
-      <label for="end" class="min-w-20">End</label>
-      <VueDatePicker
-        id="end"
-        v-model="end"
-        enable-seconds
-        :clearable="false"
-        :dark="calendarTheme"
-        :ui="{
-          input: 'bg-base-100 text-base-content border-none rounded-lg',
-          calendar: 'bg-base-300 text-base-content',
-          menu: 'bg-base-300 text-base-content',
-        }"
-      />
-    </div>
-    <div class="flex gap-3 justify-between items-center mb-3">
-      <label for="comment" class="min-w-20">Comment</label>
-      <input
-        id="comment"
-        v-model="session.comment"
-        type="text"
-        class="input input-sm input-bordered rounded-lg w-full max-w-xs"
-      />
+    <div class="p-1">
+      <div class="flex gap-3 justify-between items-center mb-3">
+        <label for="start" class="min-w-20">Start</label>
+        <VueDatePicker
+          id="start"
+          v-model="start"
+          enable-seconds
+          :clearable="false"
+          :dark="calendarTheme"
+          :ui="{
+            input: 'bg-base-100 text-base-content pr-0 border-none',
+            calendar: 'bg-base-300 text-base-content',
+            menu: 'bg-base-300 text-base-content',
+          }"
+        />
+      </div>
+      <div class="flex gap-3 justify-between items-center mb-3">
+        <label for="end" class="min-w-20">End</label>
+        <VueDatePicker
+          id="end"
+          v-model="end"
+          enable-seconds
+          :clearable="false"
+          :dark="calendarTheme"
+          :ui="{
+            input: 'bg-base-100 text-base-content pr-0 border-none',
+            calendar: 'bg-base-300 text-base-content',
+            menu: 'bg-base-300 text-base-content',
+          }"
+        />
+      </div>
+      <div class="flex gap-3 justify-between items-center mb-3">
+        <label for="comment" class="min-w-20">Comment</label>
+        <input
+          id="comment"
+          v-model="session.comment"
+          type="text"
+          class="input input-sm input-bordered rounded-lg w-full"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -69,7 +71,7 @@ const calendarTheme = computed(() => {
     "sunset",
   ];
 
-console.log(mainStore.theme, darkTheme.includes(mainStore.theme));
+  console.log(mainStore.theme, darkTheme.includes(mainStore.theme));
   return darkTheme.includes(mainStore.theme);
 });
 

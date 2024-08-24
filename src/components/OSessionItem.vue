@@ -13,7 +13,7 @@
       <div class="text-sm flex items-center gap-1 opacity-50">
         {{ sessionFromTo }}
       </div>
-      <div class="flex items-center opacity-0 group-hover:opacity-100">
+      <div v-if="!isCurrentSession" class="flex items-center opacity-0 group-hover:opacity-100">
         <button class="btn btn-xs btn-ghost" @click="editSession">
           <pencil-square-icon class="w-4 h-4"></pencil-square-icon>
         </button>
@@ -40,6 +40,8 @@ const props = defineProps({
     required: true,
   },
 });
+
+const isCurrentSession = computed(() => !props.session.end);
 
 const sessionDuration = computed(() => {
   if (!props.session.end) {
