@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { computed } from "vue";
 import { useMainStore } from "../store";
 import { HeartIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 
@@ -89,6 +89,4 @@ const selectedTheme = computed({
 const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
-
-onMounted(() => {});
 </script>

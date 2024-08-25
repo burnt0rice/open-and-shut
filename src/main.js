@@ -5,6 +5,7 @@ import "./main.css";
 
 import { initFile } from "./utils/file";
 
+//Load or create file for sessions
 initFile();
 
 const pinia = createPinia();

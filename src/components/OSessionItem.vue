@@ -13,12 +13,15 @@
       <div class="text-sm flex items-center gap-1 opacity-50">
         {{ sessionFromTo }}
       </div>
-      <div v-if="!isCurrentSession" class="flex items-center opacity-0 group-hover:opacity-100">
+      <div
+        v-if="!isCurrentSession"
+        class="flex items-center opacity-0 group-hover:opacity-100"
+      >
         <button class="btn btn-xs btn-ghost" @click="editSession">
           <pencil-square-icon class="w-4 h-4"></pencil-square-icon>
         </button>
         <button class="btn btn-xs btn-ghost" @click="deleteSession">
-          <trash-icon class="w-4 h-4 text-red-400"></trash-icon>
+          <trash-icon class="w-4 h-4"></trash-icon>
         </button>
       </div>
     </div>

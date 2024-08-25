@@ -33,7 +33,10 @@
         No sessions
       </div>
     </div>
-    <dialog ref="editorModal" class="modal h-screen py-4 flex justify-center items-center">
+    <dialog
+      ref="editorModal"
+      class="modal h-screen py-4 flex justify-center items-center"
+    >
       <div class="modal-box py-4 px-4 h-full max-h-[600px] rounded-lg">
         <form method="dialog">
           <button
@@ -42,7 +45,10 @@
             <x-mark-icon class="w-4 h-4" />
           </button>
         </form>
-        <o-session-editor v-model="sessionForEdit" @update="mainStore.updateSession(sessionForEdit)"/>
+        <o-session-editor
+          v-model="sessionForEdit"
+          @update="mainStore.updateSession(sessionForEdit)"
+        />
       </div>
     </dialog>
   </div>
@@ -85,14 +91,17 @@ const changeOnlyToday = (e) => {
 };
 
 const editHandler = (sessionId) => {
-  sessionForEdit.value = mainStore.sessions.find((session) => session.id === sessionId);
+  sessionForEdit.value = mainStore.sessions.find(
+    (session) => session.id === sessionId,
+  );
   editorModal.value.showModal();
 };
 
 const deleteHandler = async (sessionId) => {
-  const deleteYes = await confirm("Are you sure you want to delete this session?");
+  const deleteYes = await confirm(
+    "Are you sure you want to delete this session?",
+  );
 
-console.log(deleteYes);
   if (deleteYes) {
     mainStore.deleteSession(sessionId);
   }

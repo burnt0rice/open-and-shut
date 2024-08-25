@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref, computed, defineModel } from "vue";
+import { computed, defineModel } from "vue";
 import { useMainStore } from "../store";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -55,23 +55,22 @@ import { DateTime } from "luxon";
 const session = defineModel();
 const mainStore = useMainStore();
 
-const calendarTheme = computed(() => {
-  const darkTheme = [
-    "dark",
-    "synthwave",
-    "halloween",
-    "forest",
-    "black",
-    "luxury",
-    "dracula",
-    "business",
-    "night",
-    "coffee",
-    "dim",
-    "sunset",
-  ];
+const darkTheme = [
+  "dark",
+  "synthwave",
+  "halloween",
+  "forest",
+  "black",
+  "luxury",
+  "dracula",
+  "business",
+  "night",
+  "coffee",
+  "dim",
+  "sunset",
+];
 
-  console.log(mainStore.theme, darkTheme.includes(mainStore.theme));
+const calendarTheme = computed(() => {
   return darkTheme.includes(mainStore.theme);
 });
 
@@ -85,7 +84,6 @@ const start = computed({
 const end = computed({
   get: () => DateTime.fromISO(session.value.end).toISO(),
   set: (value) => {
-    console.log(value);
     session.value.end = DateTime.fromJSDate(value).toISO();
   },
 });

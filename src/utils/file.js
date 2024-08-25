@@ -31,9 +31,13 @@ const initFile = async () => {
   });
 
   if (!mainExists) {
-    await writeTextFile(`${dataDir}/${mainFile}`, JSON.stringify(mainFileTemplate), {
-      dir: BaseDirectory.AppData,
-    });
+    await writeTextFile(
+      `${dataDir}/${mainFile}`,
+      JSON.stringify(mainFileTemplate),
+      {
+        dir: BaseDirectory.AppData,
+      },
+    );
   }
 };
 
@@ -69,9 +73,13 @@ const saveSessions = async (sessions) => {
 
 const resetFile = async () => {
   //Reset main.json file with template
-  await writeTextFile(`${dataDir}/${mainFile}`, JSON.stringify(mainFileTemplate), {
-    dir: BaseDirectory.AppData,
-  });
+  await writeTextFile(
+    `${dataDir}/${mainFile}`,
+    JSON.stringify(mainFileTemplate),
+    {
+      dir: BaseDirectory.AppData,
+    },
+  );
 };
 
 export { initFile, loadFile, saveFile, saveSessions, resetFile };

@@ -21,23 +21,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { computed } from "vue";
 import { DateTime } from "luxon";
-import { EllipsisHorizontalIcon, Cog6ToothIcon, ListBulletIcon } from "@heroicons/vue/24/solid";
+import {
+  EllipsisHorizontalIcon,
+  Cog6ToothIcon,
+} from "@heroicons/vue/24/solid";
 
-const greeting = ref("Hello World");
 
-onMounted(() => {
+const greeting = computed(() => {
   //Set greeting
   const now = DateTime.now();
   const hour = now.hour;
 
   if (hour >= 0 && hour < 12) {
-    greeting.value = "Good Morning";
+    return "Good Morning";
   } else if (hour >= 12 && hour < 18) {
-    greeting.value = "Good Afternoon";
+    return "Good Afternoon";
   } else {
-    greeting.value = "Good Evening";
+    return "Good Evening";
   }
 });
 </script>

@@ -55,6 +55,10 @@ export const useMainStore = defineStore('mainStore', {
       }
     },
     async updateSessionComment(sessionId, comment) {
+      if (!sessionId) {
+        return;
+      }
+
       const index = this.sessions.findIndex((s) => s.id === sessionId);
       this.sessions[index].comment = comment;
 
@@ -77,7 +81,6 @@ export const useMainStore = defineStore('mainStore', {
       await saveSessions(this.sessions);
     },
     async setTheme(theme) {
-      console.log('changeTheme', theme);
       localStorage.setItem('theme', theme);
       this.theme = theme;
     },
