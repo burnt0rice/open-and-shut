@@ -25,6 +25,14 @@
           </select>
         </div>
       </div>
+      <div>
+        <button
+          class="btn btn-sm btn-primary w-full my-4 rounded-lg"
+          @click="downloadData"
+        >
+          Download Data as CSV
+        </button>
+      </div>
       <div class="w-full flex justify-center text-xs pt-2">
         Made with <heart-icon class="text-primary w-4 h-4 mx-1" /> by&nbsp;
         <a
@@ -42,6 +50,8 @@
 <script setup>
 import { computed } from "vue";
 import { useMainStore } from "../store";
+import { save } from "@tauri-apps/api/dialog";
+import { writeFile } from "@tauri-apps/api/fs";
 import { HeartIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 
 const themes = [
@@ -79,14 +89,38 @@ const themes = [
   "sunset",
 ];
 
-const store = useMainStore();
+const mainStore = useMainStore();
 
 const selectedTheme = computed({
-  get: () => store.theme,
-  set: (theme) => store.setTheme(theme),
+  get: () => mainStore.theme,
+  set: (theme) => mainStore.setTheme(theme),
 });
 
 const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+const downloadData = async () => {
+  const data = mainStore.sessions;
+  const csv = convertToCSV(data);
+
+  const filePath = await save({
+    defaultPath: "data.csv",
+    filters: [{ name: "CSV Files", extensions: ["csv"] }],
+  });
+
+  if (filePath) {
+    await writeFile({ path: filePath, contents: csv });
+  }
+};
+
+const convertToCSV = (arr) => {
+  const array = [Object.keys(arr[0])].concat(arr);
+
+  return array
+    .map((it) => {
+      return Object.values(it).toString();
+    })
+    .join("\n");
 };
 </script>
