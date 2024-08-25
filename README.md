@@ -11,6 +11,7 @@ An simple time tracking desktop app for people which are too lazy to track their
 - Track the time even when the app is closed
 - A lot of themes to choose from
 - Edit or delete time entries easily
+- Download your time entries as a CSV file
 
 
 ## Installation
@@ -32,3 +33,9 @@ npm run tauri dev
 ## License
 
 [MIT LICENSE](./LICENSE)
+
+
+## Stroll through ricefield
+
+If you like this project, you can explore more of my projects on my [GitHub profile](https://github.com/burnt0rice) or on my [website](https://ricefield.ch).
+
