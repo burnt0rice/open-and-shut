@@ -1,7 +1,7 @@
 # open-and-shut
 
 <p align="center">
-  <img src="oas-icon.png" width=35% />
+  <img src="https://raw.githubusercontent.com/burnt0rice/open-and-shut/main/oas-icon.png" width=35% />
 </p>
 
 
