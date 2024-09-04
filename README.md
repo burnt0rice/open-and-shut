@@ -1,11 +1,13 @@
 # open-and-shut
 
 <p align="center">
-  <img src="oas-icon.png" />
+  <img src="oas-icon.png" width=35% />
 </p>
 
 
-An simple time tracking desktop app for people which are too lazy to track their time.
+<p align="center">
+  <b>An simple time tracking desktop app for people which are too lazy to track their time.</b>
+</p>
 
 
 ## Features
