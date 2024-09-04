@@ -36,6 +36,9 @@ After you have installed the prerequisites, you can run the app with the followi
 npm run tauri dev
 ```
 
+## Help
+
+Have any suggestions or feedback? Feel free to open an [issue](https://github.com/burnt0rice/open-and-shut/issues).
 
 ## License
 
