@@ -1,5 +1,10 @@
 # open-and-shut
 
+<p align="center">
+  <img src="oas-icon.png" />
+</p>
+
+
 An simple time tracking desktop app for people which are too lazy to track their time.
 
 
